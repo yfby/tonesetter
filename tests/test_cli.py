@@ -1,18 +1,18 @@
 import sys
 
-from tonesetter.cli import main
-from tonesetter.config import ConfigError
-from tonesetter.models import Relationship, Tone
+from unsaid.cli import main
+from unsaid.config import ConfigError
+from unsaid.models import Relationship, Tone
 
 
 def test_one_shot_prints_only_the_message(monkeypatch, capsys) -> None:
     monkeypatch.setattr(
-        "tonesetter.cli.rewrite", lambda request, model=None: "Thanks, but no."
+        "unsaid.cli.rewrite", lambda request, model=None: "Thanks, but no."
     )
     monkeypatch.setattr(
         sys,
         "argv",
-        ["tonesetter", "--draft", "No.", "--scenario", "decline"],
+        ["unsaid", "--draft", "No.", "--scenario", "decline"],
     )
 
     assert main() == 0
@@ -23,8 +23,8 @@ def test_errors_go_to_stderr(monkeypatch, capsys) -> None:
     def fail(*args: object, **kwargs: object) -> None:
         raise ConfigError("No Gemini API key found.")
 
-    monkeypatch.setattr("tonesetter.cli.rewrite", fail)
-    monkeypatch.setattr(sys, "argv", ["tonesetter", "--intent", "decline"])
+    monkeypatch.setattr("unsaid.cli.rewrite", fail)
+    monkeypatch.setattr(sys, "argv", ["unsaid", "--intent", "decline"])
 
     assert main() == 1
     captured = capsys.readouterr()
@@ -41,8 +41,8 @@ def test_interactive_mode_collects_context(monkeypatch, capsys) -> None:
         seen["request"] = request
         return "Okay."
 
-    monkeypatch.setattr("tonesetter.cli.rewrite", fake_rewrite)
-    monkeypatch.setattr(sys, "argv", ["tonesetter"])
+    monkeypatch.setattr("unsaid.cli.rewrite", fake_rewrite)
+    monkeypatch.setattr(sys, "argv", ["unsaid"])
 
     assert main() == 0
     request = seen["request"]
@@ -53,7 +53,7 @@ def test_interactive_mode_collects_context(monkeypatch, capsys) -> None:
 
 
 def test_empty_input_is_rejected(monkeypatch, capsys) -> None:
-    monkeypatch.setattr(sys, "argv", ["tonesetter", "--draft", "   "])
+    monkeypatch.setattr(sys, "argv", ["unsaid", "--draft", "   "])
 
     assert main() == 1
     assert "Provide a draft, an intent, or both" in capsys.readouterr().err

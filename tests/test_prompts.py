@@ -1,5 +1,5 @@
-from tonesetter.models import Relationship, RewriteRequest, Scenario, Tone
-from tonesetter.prompts import SYSTEM_INSTRUCTION, build_prompt
+from unsaid.models import Relationship, RewriteRequest, Scenario, Tone
+from unsaid.prompts import SYSTEM_INSTRUCTION, build_prompt
 
 
 def test_prompt_includes_context_and_content() -> None:

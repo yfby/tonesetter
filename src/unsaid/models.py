@@ -1,4 +1,4 @@
-"""Data shapes for a Tonesetter rewrite request and result."""
+"""Data shapes for a Unsaid rewrite request and result."""
 
 from __future__ import annotations
 

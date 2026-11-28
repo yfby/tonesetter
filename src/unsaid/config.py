@@ -36,13 +36,13 @@ def api_key() -> str:
 
 def model_name() -> str:
     _load_env()
-    return os.environ.get("TONESETTER_MODEL", DEFAULT_MODEL)
+    return os.environ.get("UNSAID_MODEL", DEFAULT_MODEL)
 
 
 def fallback_models() -> list[str]:
     """Models to try when the primary model returns HTTP 503."""
     _load_env()
-    raw = os.environ.get("TONESETTER_FALLBACK_MODELS")
+    raw = os.environ.get("UNSAID_FALLBACK_MODELS")
     if raw is None:
         return list(DEFAULT_FALLBACK_MODELS)
     return [name.strip() for name in raw.split(",") if name.strip()]

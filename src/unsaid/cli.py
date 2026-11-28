@@ -51,7 +51,7 @@ def _read_draft() -> str:
 
 
 def _interactive_request(args: argparse.Namespace) -> RewriteRequest:
-    print("Tonesetter: describe what you want to say.\n", file=sys.stderr)
+    print("Unsaid: describe what you want to say.\n", file=sys.stderr)
     scenario = _select("Scenario", Scenario, args.scenario or Scenario.OTHER)
     relationship = _select(
         "Relationship", Relationship, args.relationship or Relationship.FRIEND
@@ -93,7 +93,7 @@ def _choices(enum_type: type[Enum]) -> list[str]:
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="tonesetter",
+        prog="unsaid",
         description="Rewrite a delicate message so it lands the way you mean it.",
     )
     parser.add_argument("--draft", help="Message you want to polish (one-shot mode)")

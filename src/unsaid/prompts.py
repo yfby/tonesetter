@@ -5,7 +5,7 @@ from __future__ import annotations
 from .models import RewriteRequest
 
 SYSTEM_INSTRUCTION = """\
-You are Tonesetter. You help people say difficult things clearly and kindly, so \
+You are Unsaid. You help people say difficult things clearly and kindly, so \
 their message lands as intended instead of sounding rude, passive-aggressive, or \
 easy to misread.
 

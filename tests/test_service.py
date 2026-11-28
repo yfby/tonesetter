@@ -3,9 +3,9 @@ from types import SimpleNamespace
 import pytest
 from google.genai import errors
 
-from tonesetter import service
-from tonesetter.models import RewriteRequest, RewriteResult
-from tonesetter.service import ServiceError, rewrite
+from unsaid import service
+from unsaid.models import RewriteRequest, RewriteResult
+from unsaid.service import ServiceError, rewrite
 
 
 class _Models:

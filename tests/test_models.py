@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from tonesetter.models import RewriteRequest
+from unsaid.models import RewriteRequest
 
 
 def test_requires_a_draft_or_an_intent() -> None:
